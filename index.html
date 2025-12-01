@@ -481,6 +481,65 @@
       }
     }
 
+    .changelog {
+      margin-top: 10px;
+    }
+
+    .changelog-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 16px 10px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .changelog-timeline {
+      margin-top: 6px;
+      border-left: 1px solid rgba(55, 65, 81, 0.9);
+      padding-left: 14px;
+    }
+
+    .changelog-item {
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 4px;
+    }
+
+    .changelog-item:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .changelog-dot {
+      position: absolute;
+      left: -20px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+    }
+
+    .changelog-date {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .changelog-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .changelog-body {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
     .feature-card {
       background: rgba(15, 23, 42, 0.96);
       border-radius: var(--radius-md);
@@ -735,6 +794,43 @@
               Built as an in-house capstone project at Bahrain Polytechnic.
               The system is used to demonstrate good project management, risk assessment and quality control
               as much as technical skills.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHANGELOG / UPDATES -->
+      <section class="changelog">
+        <h2 class="section-title">
+          <span class="emoji">📝</span> Changelog &amp; recent updates
+        </h2>
+        <p class="section-subtitle">
+          A quick summary of the most recent changes to the ForensiAI capstone project. This helps examiners
+          and reviewers see how the system has evolved over time.
+        </p>
+
+        <div class="changelog-card">
+          <div class="changelog-timeline" aria-label="Project updates timeline">
+            <div class="changelog-item">
+              <div class="changelog-dot"></div>
+              <div class="changelog-date">1 Dec 2025</div>
+              <div class="changelog-title">Public landing page &amp; Project Manager console</div>
+              <p class="changelog-body">
+                Launched the SEO-optimised ForensiAI landing page, added the dedicated Project Manager console
+                with ingest health metrics, host risk overview, analyst activity table and a PM PDF report export
+                for thesis and viva demonstrations.
+              </p>
+            </div>
+
+            <div class="changelog-item">
+              <div class="changelog-dot"></div>
+              <div class="changelog-date">30 Nov 2025</div>
+              <div class="changelog-title">macOS live log ingestion &amp; AI-style risk scoring</div>
+              <p class="changelog-body">
+                Completed the macOS Unified Log ingestion pipeline, added AI-style host risk scoring and
+                connected the analyst dashboard to the shared SQLite state used by the PM view for safe,
+                read-only monitoring.
+              </p>
             </div>
           </div>
         </div>
