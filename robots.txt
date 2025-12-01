@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alsowaidi98.github.io/ForensiAI/sitemap.xml

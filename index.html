@@ -2,52 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ForensiAI | AI-Powered Digital Forensics Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Basic SEO -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="ForensiAI is an AI-powered digital forensics dashboard for analysing macOS and Windows logs. Built by Ahmed Alsowaidi to help security teams investigate incidents faster." />
-  <meta name="keywords"
-        content="ForensiAI, digital forensics, log analysis, macOS logs, Windows logs, cybersecurity, SIEM, Bahrain Polytechnic, Ahmed Alsowaidi" />
+  <title>ForensiAI – AI-Powered Digital Forensics Dashboard for macOS &amp; Windows</title>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="ForensiAI is an AI-powered digital forensics dashboard that ingests macOS Unified Logs and Windows system logs, detects suspicious behaviour, highlights risky hosts and generates clean PDF reports for supervisors and managers." />
+  <meta name="keywords" content="ForensiAI, digital forensics, macOS logs, Windows logs, Sysmon, security operations, SOC dashboard, incident response, Bahrain Polytechnic capstone, AI forensics, log analysis" />
   <meta name="author" content="Ahmed Alsowaidi" />
-  <meta name="robots" content="index, follow" />
+
+  <!-- Google Search Console verification -->
+  <meta name="google-site-verification" content="79_wolVHTaaur8QyGeLXi-NfBe8cIL6bLtLlJ-HYBIA" />
+
+  <!-- Canonical URL -->
   <link rel="canonical" href="https://alsowaidi98.github.io/ForensiAI/" />
 
-  <!-- Open Graph / Social preview -->
-  <meta property="og:title" content="ForensiAI | AI-Powered Digital Forensics Dashboard" />
-  <meta property="og:description"
-        content="Investigate macOS and Windows security events using AI-assisted log analysis, timelines and PDF reports." />
+  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="ForensiAI – AI-powered digital forensics dashboard" />
+  <meta property="og:description" content="Investigate macOS & Windows logs with AI-assisted forensics. Highlight high-risk hosts, analyst activity and generate automated PDF reports." />
   <meta property="og:url" content="https://alsowaidi98.github.io/ForensiAI/" />
-  <!-- TODO: replace with a real image in this repo, e.g. /assets/forensiai-preview.png -->
-  <meta property="og:image" content="https://alsowaidi98.github.io/ForensiAI/assets/forensiai-preview.png" />
+  <!-- If you later upload a banner image, update this URL -->
+  <meta property="og:image" content="https://alsowaidi98.github.io/ForensiAI/forensiai-banner.png" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter / X cards -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ForensiAI | AI-Powered Digital Forensics Dashboard" />
-  <meta name="twitter:description"
-        content="AI-assisted digital forensics for macOS and Windows logs, created by Ahmed Alsowaidi." />
-  <meta name="twitter:image"
-        content="https://alsowaidi98.github.io/ForensiAI/assets/forensiai-preview.png" />
+  <meta name="twitter:title" content="ForensiAI – AI-powered digital forensics dashboard" />
+  <meta name="twitter:description" content="macOS & Windows log analysis with AI-assisted forensics and supervisor-friendly reports." />
+  <meta name="twitter:image" content="https://alsowaidi98.github.io/ForensiAI/forensiai-banner.png" />
 
-  <!-- Google site verification (already provided by you) -->
-  <meta name="google-site-verification"
-        content="79_wolVHTaaur8QyGeLXi-NfBe8cIL6bLtLlJ-HYBIA" />
+  <!-- Optional: Google Analytics (replace G-XXXXXXX when you create it) 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+  -->
 
-  <!-- Simple styling -->
+  <!-- JSON-LD structured data (helps Google understand the project) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ForensiAI",
+    "operatingSystem": "macOS, Windows",
+    "applicationCategory": "SecurityApplication",
+    "description": "ForensiAI is an AI-powered digital forensics dashboard that ingests macOS Unified Logs and Windows system logs, detects suspicious behaviour, highlights high-risk hosts and generates supervisor-ready PDF reports.",
+    "creator": {
+      "@type": "Person",
+      "name": "Ahmed Alsowaidi",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Bahrain Polytechnic"
+      }
+    },
+    "url": "https://alsowaidi98.github.io/ForensiAI/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Simple dark theme styling -->
   <style>
     :root {
       --bg: #050816;
-      --bg-alt: #0b1020;
-      --accent: #3b82f6;
-      --accent-soft: rgba(59, 130, 246, 0.15);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2933;
+      --bg-alt: #070b1f;
+      --primary: #3b82f6;
+      --primary-soft: rgba(59, 130, 246, 0.15);
+      --accent: #22c55e;
       --danger: #ef4444;
-      --success: #22c55e;
-      --card-radius: 18px;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0b1120;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-md: 12px;
       --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
     }
 
@@ -55,319 +89,413 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #1d253b 0, #050816 55%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top left, #111827 0, #020617 45%, #000 100%);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: var(--accent);
+      color: inherit;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 20px 20px 10px;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .logo {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-size: 14px;
-      color: var(--muted);
+      gap: 12px;
     }
 
-    .logo-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      background: radial-gradient(circle at 20% 0%, #38bdf8, #6366f1 60%, #1d4ed8);
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #e5f2ff;
-      font-weight: 800;
-      font-size: 16px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+      color: #e5f0ff;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
     }
 
-    .chip {
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-    }
-
-    main {
-      max-width: 1120px;
-      margin: 0 auto 80px;
-      padding: 0 20px 40px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 32px;
-      padding: 40px 0 30px;
-      align-items: center;
-    }
-
-    @media (max-width: 880px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-title {
-      font-size: clamp(30px, 3.2vw, 40px);
-      font-weight: 750;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .hero-title span {
-      background: linear-gradient(to right, #38bdf8, #6366f1);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 520px;
-      margin-bottom: 18px;
-    }
-
-    .hero-badges {
+    .brand-text {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
+      flex-direction: column;
+      gap: 1px;
     }
 
-    .badge {
-      font-size: 11px;
-      padding: 4px 11px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(55, 65, 81, 0.7);
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
       color: var(--muted);
+    }
+
+    .header-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.92));
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
+    .header-pill span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    main {
+      flex: 1;
+      padding: 12px 24px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 32px;
+      margin-top: 10px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-eyebrow-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.3), rgba(15, 23, 42, 0.95));
+      font-size: 11px;
+      color: #dbeafe;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span.highlight-mac {
+      color: #60a5fa;
+    }
+    .hero-title span.highlight-win {
+      color: #a5b4fc;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 40rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .chip.green {
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #bbf7d0;
+      background: rgba(22, 163, 74, 0.2);
+    }
+
+    .chip.blue {
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #bfdbfe;
+      background: rgba(37, 99, 235, 0.25);
+    }
+
+    .chip span.dot {
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .btn {
       border-radius: 999px;
-      padding: 9px 18px;
+      padding: 10px 18px;
       font-size: 13px;
       font-weight: 500;
-      border: 1px solid transparent;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
-        border-color 0.12s ease;
+      border: 1px solid transparent;
+      cursor: default;
     }
 
     .btn-primary {
-      background: linear-gradient(to right, #2563eb, #4f46e5);
-      color: #e5f0ff;
-      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.6);
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
     }
 
     .btn-ghost {
-      background: rgba(15, 23, 42, 0.7);
-      border-color: rgba(75, 85, 99, 0.9);
-      color: var(--muted);
-    }
-
-    .btn-ghost:hover {
       background: rgba(15, 23, 42, 0.95);
-      border-color: rgba(148, 163, 184, 0.9);
-    }
-
-    .hero-note {
-      font-size: 11px;
+      border-color: rgba(148, 163, 184, 0.45);
       color: var(--muted);
     }
 
-    .hero-card {
-      background: radial-gradient(circle at top, #111827 0, #020617 60%);
-      border-radius: 24px;
-      padding: 18px 18px 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(55, 65, 81, 0.9);
+    .btn span.pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      font-size: 11px;
+      color: #a5b4fc;
     }
 
-    .hero-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
+    .hero-footnote {
       font-size: 12px;
       color: var(--muted);
     }
 
-    .hero-kpis {
+    .hero-footnote strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    /* Right side: PM snapshot card */
+    .pm-card {
+      background: radial-gradient(circle at top left, #111827, #020617 60%);
+      border-radius: 24px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .pm-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .pm-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+    }
+
+    .pm-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .pm-kpis {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-top: 8px;
+      margin-bottom: 10px;
     }
 
-    .kpi-card {
+    .pm-kpi {
+      background: rgba(15, 23, 42, 0.95);
       border-radius: 14px;
-      padding: 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 8px 10px;
+      border: 1px solid rgba(30, 64, 175, 0.7);
     }
 
-    .kpi-label {
+    .pm-kpi-label {
       font-size: 11px;
       color: var(--muted);
       margin-bottom: 4px;
     }
 
-    .kpi-value {
-      font-size: 15px;
-      font-weight: 650;
+    .pm-kpi-value {
+      font-size: 18px;
+      font-weight: 600;
     }
 
-    .kpi-pill {
+    .pm-kpi-chip {
+      font-size: 11px;
+      margin-top: 2px;
+      padding: 1px 6px;
+      border-radius: 999px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      margin-top: 2px;
-      font-size: 11px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #dbeafe;
+      gap: 5px;
     }
 
-    .kpi-dot-red {
+    .pm-kpi-chip.green {
+      background: rgba(22, 163, 74, 0.12);
+      color: #bbf7d0;
+    }
+
+    .pm-kpi-chip.amber {
+      background: rgba(234, 179, 8, 0.12);
+      color: #facc15;
+    }
+
+    .pm-kpi-chip.red-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
       background: var(--danger);
     }
 
-    .kpi-dot-green {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--success);
-    }
-
-    .hero-table {
+    .pm-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 4px;
+      margin-top: 10px;
       font-size: 11px;
-      color: var(--muted);
     }
 
-    .hero-table th,
-    .hero-table td {
-      padding: 6px 4px;
+    .pm-table th,
+    .pm-table td {
+      padding: 5px 6px;
       text-align: left;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.35);
     }
 
-    .hero-table th {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-bottom: 1px solid rgba(55, 65, 81, 0.8);
+    .pm-table th {
+      font-weight: 500;
+      color: #9ca3af;
+      font-size: 11px;
     }
 
-    .hero-table tr:nth-child(2) td {
-      color: #fecaca;
+    .pm-table td.host {
+      font-weight: 500;
+      color: #e5e7eb;
     }
 
-    /* Sections */
+    .pm-table td.numeric {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pm-table tr:last-child td {
+      border-bottom: none;
+    }
+
     section {
-      margin-top: 40px;
+      margin-bottom: 28px;
     }
 
     .section-title {
-      font-size: 20px;
-      font-weight: 650;
-      margin-bottom: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span.emoji {
+      font-size: 18px;
     }
 
     .section-subtitle {
-      color: var(--muted);
       font-size: 13px;
-      margin-bottom: 16px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      max-width: 52rem;
     }
 
-    .grid-3 {
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      gap: 12px;
     }
 
     @media (max-width: 880px) {
-      .grid-3 {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+      .features-grid {
+        grid-template-columns: 1fr;
       }
     }
 
-    .card {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: var(--card-radius);
-      padding: 14px 14px 16px;
+    .feature-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-md);
       border: 1px solid rgba(31, 41, 55, 0.9);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      padding: 12px 12px 10px;
     }
 
-    .card h3 {
-      font-size: 15px;
-      margin-bottom: 6px;
-    }
-
-    .card p {
+    .feature-title {
       font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feature-body {
+      font-size: 12px;
       color: var(--muted);
     }
 
@@ -375,304 +503,249 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
-    .pill {
+    .pill-tag {
       font-size: 11px;
-      padding: 3px 9px;
+      padding: 3px 8px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      color: var(--muted);
-    }
-
-    .download-card {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .download-tag {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .download-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .platform-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .platform-pill span {
-      font-size: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5f5;
     }
 
     footer {
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      margin-top: 40px;
-      padding: 16px 20px 24px;
+      padding: 16px 24px 22px;
       font-size: 11px;
       color: var(--muted);
-      text-align: center;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 10px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <div class="logo-mark">F</div>
-      <div>
-        <div>ForensiAI</div>
-        <div style="font-size: 11px; color: var(--muted);">
-          AI-powered digital forensics dashboard
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-text">
+          <div class="brand-name">FORENSIAI</div>
+          <div class="brand-tagline">AI-powered digital forensics dashboard</div>
         </div>
       </div>
-    </div>
-    <div class="chip">Student project · Bahrain Polytechnic</div>
-  </header>
+      <div class="header-pill">
+        <span class="dot"></span>
+        <span>Student project · Bahrain Polytechnic</span>
+      </div>
+    </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <div class="hero-title">
-          Investigate <span>macOS &amp; Windows logs</span> with AI-assisted forensics.
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-badge">macOS live SOC console</div>
+            <span>Capstone project — Ahmed Alsowaidi</span>
+          </div>
+
+          <h1 class="hero-title">
+            Investigate <span class="highlight-mac">macOS</span> &amp;
+            <span class="highlight-win">Windows</span> logs with AI-assisted forensics.
+          </h1>
+
+          <p class="hero-subtitle">
+            ForensiAI ingests system logs, detects suspicious behaviour, highlights high-risk hosts
+            and generates clean PDF reports for supervisors and project managers.
+            Designed as a teaching and demonstration tool — not a production SOC (yet).
+          </p>
+
+          <div class="hero-chip-row">
+            <span class="chip green"><span class="dot"></span>Live log analysis (demo mode)</span>
+            <span class="chip blue">macOS Unified Log &amp; Windows event logs</span>
+            <span class="chip">Built by Ahmed Alsowaidi</span>
+          </div>
+
+          <div class="hero-actions">
+            <div class="btn btn-primary">
+              Download <span class="pill">Demo build (coming soon)</span>
+            </div>
+            <a class="btn btn-ghost" href="https://github.com/Alsowaidi98/ForensiAI" target="_blank" rel="noopener noreferrer">
+              View project on GitHub
+            </a>
+          </div>
+
+          <p class="hero-footnote">
+            <strong>What this project shows:</strong> live macOS log ingestion, AI-style risk scoring,
+            a separate Project Manager console, and automated PDF/CSV reporting for defence panels.
+          </p>
         </div>
-        <p class="hero-subtitle">
-          ForensiAI ingests system logs, detects suspicious behaviour, highlights high-risk
-          hosts and generates clean PDF reports for supervisors and managers.
+
+        <!-- PM snapshot card -->
+        <aside class="pm-card" aria-label="Project Manager snapshot (demo data)">
+          <div class="pm-card-header">
+            <div>
+              <div class="pm-card-title">Project Manager snapshot</div>
+              <div class="pm-label">Host overview — demo data</div>
+            </div>
+            <div class="pm-label">PM console view only</div>
+          </div>
+
+          <div class="pm-kpis">
+            <div class="pm-kpi">
+              <div class="pm-kpi-label">Hosts in window</div>
+              <div class="pm-kpi-value">3</div>
+              <div class="pm-kpi-chip green">
+                <span class="pm-kpi-chip-dot"></span> ingest healthy
+              </div>
+            </div>
+            <div class="pm-kpi">
+              <div class="pm-kpi-label">Highest host risk</div>
+              <div class="pm-kpi-value">82</div>
+              <div class="pm-kpi-chip amber">
+                <span class="pm-kpi-chip-dot red-dot"></span> review required
+              </div>
+            </div>
+            <div class="pm-kpi">
+              <div class="pm-kpi-label">High-risk events</div>
+              <div class="pm-kpi-value">19</div>
+              <div class="pm-kpi-chip">last 60 minutes</div>
+            </div>
+          </div>
+
+          <table class="pm-table">
+            <thead>
+              <tr>
+                <th>Host</th>
+                <th class="numeric">Events</th>
+                <th class="numeric">Avg AI risk</th>
+                <th class="numeric">Max</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="host">Ahmeds-MacBook-Pro.local</td>
+                <td class="numeric">463</td>
+                <td class="numeric">6.3</td>
+                <td class="numeric">10</td>
+              </tr>
+              <tr>
+                <td class="host">demo-win-lab</td>
+                <td class="numeric">1123</td>
+                <td class="numeric">82.5</td>
+                <td class="numeric">96</td>
+              </tr>
+              <tr>
+                <td class="host">mac-demo-lab</td>
+                <td class="numeric">355</td>
+                <td class="numeric">14.2</td>
+                <td class="numeric">55</td>
+              </tr>
+            </tbody>
+          </table>
+        </aside>
+      </section>
+
+      <!-- FEATURES -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🧩</span> What ForensiAI can show you
+        </h2>
+        <p class="section-subtitle">
+          The dashboard is designed for incident-response demonstrations and capstone defence panels.
+          It balances technical depth (live logs, AI-style analytics) with clear, non-technical views
+          for supervisors and managers.
         </p>
 
-        <div class="hero-badges">
-          <div class="badge">
-            <span class="badge-dot"></span>
-            Live log analysis (demo mode)
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-title">Live log ingestion</div>
+            <div class="feature-body">
+              Ingests macOS Unified Logs and Windows security / Sysmon logs into a single view.
+              Suspicious events are highlighted and summarised for quick review.
+              <div class="pill-row">
+                <span class="pill-tag">macOS unified log</span>
+                <span class="pill-tag">Windows security</span>
+                <span class="pill-tag">Sysmon</span>
+              </div>
+            </div>
           </div>
-          <div class="badge">macOS unified log &amp; Windows event logs</div>
-          <div class="badge">Built by Ahmed Alsowaidi</div>
-        </div>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#download">
-            ⬇️ Download (demo build soon)
-          </a>
-          <a class="btn btn-ghost" href="https://github.com/Alsowaidi98/ForensiAI" target="_blank">
-            ⭐ View project on GitHub
-          </a>
-        </div>
+          <div class="feature-card">
+            <div class="feature-title">AI-assisted risk scoring</div>
+            <div class="feature-body">
+              Each host receives an AI-style heuristic score based on failed logins,
+              network activity and process behaviour. The Project Manager console
+              shows high-risk machines without exposing raw logs.
+              <div class="pill-row">
+                <span class="pill-tag">Host risk bands</span>
+                <span class="pill-tag">Bruteforce signals</span>
+              </div>
+            </div>
+          </div>
 
-        <p class="hero-note">
-          This is a capstone project – not a commercial SOC tool (yet). Perfect for demonstrating
-          incident workflows, PM dashboards and AI-assisted analysis.
+          <div class="feature-card">
+            <div class="feature-title">Project Manager console</div>
+            <div class="feature-body">
+              A separate read-only console for supervisors with host ranking, ingest health,
+              analyst audit trail and one-click PDF reports. Perfect for viva and demo sessions.
+              <div class="pill-row">
+                <span class="pill-tag">Ingestor health</span>
+                <span class="pill-tag">Recent analyst actions</span>
+                <span class="pill-tag">Auto-alert prototype</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMPLEMENTATION -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🛠️</span> How the capstone implementation works
+        </h2>
+        <p class="section-subtitle">
+          ForensiAI is implemented as a Python&nbsp;/ Streamlit dashboard. It reads log files generated
+          by helper scripts, parses and enriches the events, then stores them in a local database used
+          by both the analyst view (<code>app.py</code>) and the Project Manager console (<code>pm_console.py</code>).
         </p>
-      </div>
-
-      <aside class="hero-card" aria-label="Example PM overview">
-        <div class="hero-card-header">
-          <span style="font-weight: 600; font-size: 12px;">Project Manager snapshot</span>
-          <span style="font-size: 11px; color: var(--muted);">
-            Host overview – demo data
-          </span>
-        </div>
-        <div class="hero-kpis">
-          <div class="kpi-card">
-            <div class="kpi-label">Hosts in window</div>
-            <div class="kpi-value">3</div>
-            <div class="kpi-pill">
-              <span class="kpi-dot-green"></span>
-              ingest healthy
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-title">Technologies</div>
+            <div class="feature-body">
+              Python, Streamlit, Pandas, SQLite, macOS logging tools and Windows log exports.
+              The demo is self-contained and designed to run on a lab MacBook.
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-label">Highest host risk</div>
-            <div class="kpi-value">82</div>
-            <div class="kpi-pill">
-              <span class="kpi-dot-red"></span>
-              review required
+          <div class="feature-card">
+            <div class="feature-title">Security focus</div>
+            <div class="feature-body">
+              The project focuses on visibility and education rather than production-grade security.
+              It demonstrates log-driven investigation and clear reporting for non-technical stakeholders.
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-label">High-risk events</div>
-            <div class="kpi-value">19</div>
-            <div class="kpi-pill">
-              last 60 minutes
+          <div class="feature-card">
+            <div class="feature-title">Academic context</div>
+            <div class="feature-body">
+              Built as an in-house capstone project at Bahrain Polytechnic.
+              The system is used to demonstrate good project management, risk assessment and quality control
+              as much as technical skills.
             </div>
           </div>
         </div>
-        <table class="hero-table" aria-label="Example host risk table">
-          <thead>
-            <tr>
-              <th>Host</th>
-              <th>Events</th>
-              <th>Avg&nbsp;AI&nbsp;risk</th>
-              <th>Max</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Ahmeds-MacBook-Pro.local</td>
-              <td>463</td>
-              <td>6.3</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <td>demo-win-lab</td>
-              <td>1123</td>
-              <td>82.5</td>
-              <td>96</td>
-            </tr>
-            <tr>
-              <td>mac-demo-lab</td>
-              <td>355</td>
-              <td>14.2</td>
-              <td>55</td>
-            </tr>
-          </tbody>
-        </table>
-      </aside>
-    </section>
+      </section>
+    </main>
 
-    <!-- FEATURES -->
-    <section id="features">
-      <h2 class="section-title">What ForensiAI can show you</h2>
-      <p class="section-subtitle">
-        Designed for demonstrations, capstone defence panels and supervisors who want to see
-        both technical depth and clear project management.
-      </p>
-
-      <div class="grid-3">
-        <div class="card">
-          <h3>Live log ingestion</h3>
-          <p>
-            Ingests macOS unified logs and Windows security/Sysmon events, and normalises them
-            into a single dashboard. Filters, time windows and keyword search keep the view focused.
-          </p>
-          <div class="pill-row">
-            <span class="pill">macOS unified log</span>
-            <span class="pill">Windows Event Log</span>
-            <span class="pill">Sysmon</span>
-          </div>
-        </div>
-        <div class="card">
-          <h3>AI-assisted risk scoring</h3>
-          <p>
-            Each event receives an AI-style heuristic score so that brute-force attempts,
-            suspicious processes and weird network activity are surfaced first.
-          </p>
-          <div class="pill-row">
-            <span class="pill">Top-5 risky events</span>
-            <span class="pill">Per-host risk view</span>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Project Manager console</h3>
-          <p>
-            Separate PM dashboard with host ranking, ingest health, threat summary and user
-            activity audit trail – so only the manager sees who did what and when.
-          </p>
-          <div class="pill-row">
-            <span class="pill">Host / device overview</span>
-            <span class="pill">Ingestor health</span>
-            <span class="pill">Analyst activity log</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how">
-      <h2 class="section-title">How it works (high-level)</h2>
-      <p class="section-subtitle">
-        ForensiAI is written in Python using Streamlit, Pandas and a small SQLite state database.
-        It is designed to be clear enough for examiners to understand but realistic enough to
-        look like a small SOC tool.
-      </p>
-
-      <div class="grid-3">
-        <div class="card">
-          <h3>1. Ingest</h3>
-          <p>
-            Log collectors export events to CSV (macOS unified log, Windows security &amp;
-            Sysmon). ForensiAI ingests these into a unified data model.
-          </p>
-        </div>
-        <div class="card">
-          <h3>2. Detect</h3>
-          <p>
-            Simple but explainable detectors flag port-scans, failed logins, suspicious processes
-            and persistence changes. Events are scored and ranked.
-          </p>
-        </div>
-        <div class="card">
-          <h3>3. Explain &amp; report</h3>
-          <p>
-            Analysts review the ranked events and generate PDF reports summarising hosts,
-            timelines and indicators – perfect for attaching to the thesis.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- DOWNLOAD / STATUS -->
-    <section id="download">
-      <h2 class="section-title">Download &amp; project status</h2>
-      <p class="section-subtitle">
-        This project is currently under active development as an academic capstone. Public demo
-        builds will be published here when ready.
-      </p>
-
-      <div class="grid-3">
-        <div class="card download-card">
-          <div class="download-tag">Planned demo builds</div>
-          <div class="download-pill-row">
-            <div class="platform-pill">
-              <span>🍎</span> macOS (Apple&nbsp;Silicon, demo)
-            </div>
-            <div class="platform-pill">
-              <span>🪟</span> Windows 11 (demo)
-            </div>
-          </div>
-          <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">
-            When binaries are available, download buttons will appear here. For now, you can
-            review the code on GitHub.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Academic context</h3>
-          <p>
-            ForensiAI is part of an in-house project at Bahrain Polytechnic, focusing on
-            secure log handling, AI-style scoring and clear project management artefacts
-            (Gantt charts, risk registers, PM dashboards).
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Contact</h3>
-          <p>
-            For questions about the project, collaboration or thesis material, you can reach
-            Ahmed via LinkedIn or email (contact details will be included in the final thesis).
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    ForensiAI – AI-Powered Digital Forensics Dashboard · Built by Ahmed Alsowaidi ·
-    Hosted on GitHub Pages
-  </footer>
+    <footer>
+      ForensiAI — AI-powered digital forensics dashboard for macOS &amp; Windows.
+      Student project by Ahmed Alsowaidi at Bahrain Polytechnic. View the source code on
+      <a href="https://github.com/Alsowaidi98/ForensiAI" target="_blank" rel="noopener noreferrer">GitHub</a>.
+    </footer>
+  </div>
 </body>
 </html>
