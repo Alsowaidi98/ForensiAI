@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ForensiAI – Documentation for macOS incident dashboard & PM console</title>
+
+  <meta name="description" content="Official documentation for ForensiAI: how to install, run and demo the macOS incident dashboard, log ingestors and Project Manager console for your capstone defence." />
+  <meta name="keywords" content="ForensiAI documentation, installation guide, macOS unified log, digital forensics, Streamlit, Bahrain Polytechnic capstone, AI security dashboard" />
+  <meta name="author" content="Ahmed Alsowaidi" />
+
+  <!-- Canonical URL (documentation page) -->
+  <link rel="canonical" href="https://alsowaidi98.github.io/ForensiAI/docs.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ForensiAI – Documentation & demo guide" />
+  <meta property="og:description" content="Step-by-step guide for installing, running and demoing the ForensiAI macOS dashboard and Project Manager console." />
+  <meta property="og:url" content="https://alsowaidi98.github.io/ForensiAI/docs.html" />
+  <meta property="og:image" content="https://alsowaidi98.github.io/ForensiAI/forensiai-banner.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ForensiAI – Documentation & demo guide" />
+  <meta name="twitter:description" content="How to install, run and demo the ForensiAI macOS incident dashboard and PM console." />
+  <meta name="twitter:image" content="https://alsowaidi98.github.io/ForensiAI/forensiai-banner.png" />
+
+  <!-- Simple dark theme styling (same base as index/features) -->
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #070b1f;
+      --primary: #3b82f6;
+      --primary-soft: rgba(59, 130, 246, 0.15);
+      --accent: #22c55e;
+      --danger: #ef4444;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0b1120;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top left, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5f0ff;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline { font-size: 12px; color: var(--muted); }
+
+    .header-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.92));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-pill span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    /* Top nav */
+    .top-nav {
+      padding: 0 28px 8px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-link-active {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+    }
+
+    main {
+      flex: 1;
+      padding: 12px 24px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin-top: 10px;
+      margin-bottom: 26px;
+      max-width: 720px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3.5vw, 32px);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span.highlight {
+      color: #60a5fa;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 44rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .hero-note strong { color: #e5e7eb; }
+
+    section { margin-bottom: 26px; }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span.emoji { font-size: 18px; }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      max-width: 56rem;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      font-size: 13px;
+      color: var(--muted);
+      padding-left: 18px;
+      margin-bottom: 4px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5f5;
+    }
+
+    code {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 2px 5px;
+      border-radius: 6px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    pre {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 12px;
+      overflow-x: auto;
+      margin: 6px 0;
+    }
+
+    pre code {
+      border: none;
+      padding: 0;
+      background: transparent;
+    }
+
+    footer {
+      padding: 16px 24px 22px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 10px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 880px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .top-nav {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-text">
+          <div class="brand-name">FORENSIAI</div>
+          <div class="brand-tagline">AI-powered digital forensics dashboard</div>
+        </div>
+      </div>
+      <div class="header-pill">
+        <span class="dot"></span>
+        <span>Student project · Bahrain Polytechnic</span>
+      </div>
+    </header>
+
+    <!-- Top navigation -->
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link">Overview</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link nav-link-active">Documentation</a>
+      <a href="https://github.com/Alsowaidi98/ForensiAI" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-eyebrow">Documentation · macOS implementation</div>
+        <h1 class="hero-title">
+          How to install, run and demo <span class="highlight">ForensiAI</span>.
+        </h1>
+        <p class="hero-subtitle">
+          This documentation focuses on the macOS implementation of ForensiAI: the analyst dashboard
+          (<code>app.py</code>), the Project Manager console (<code>pm_console.py</code>) and the
+          log ingestors for macOS Unified Log. It is written for supervisors, examiners and technical
+          reviewers.
+        </p>
+        <p class="hero-note">
+          <strong>Note:</strong> Windows log ingestion and UI is being developed separately as a
+          companion implementation.
+        </p>
+      </section>
+
+      <!-- QUICK START -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">⚡</span> Quick start on macOS
+        </h2>
+        <p class="section-subtitle">
+          A short checklist that shows you understand environment setup, Python tooling and how to
+          run the dashboard locally on a MacBook.
+        </p>
+
+        <div class="card">
+          <h3>1. System requirements</h3>
+          <ul>
+            <li>macOS (tested on Apple Silicon MacBook Pro with Sonoma).</li>
+            <li>Python 3.11+ and <code>pip</code> installed.</li>
+            <li>Basic terminal access (Terminal or iTerm2).</li>
+          </ul>
+          <div class="badge-row">
+            <span class="badge">macOS unified log</span>
+            <span class="badge">Python / Streamlit</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>2. Clone the repository</h3>
+          <p>From the terminal:</p>
+          <pre><code>git clone https://github.com/Alsowaidi98/ForensiAI.git
+cd ForensiAI</code></pre>
+        </div>
+
+        <div class="card">
+          <h3>3. Create &amp; activate a virtual environment</h3>
+          <p>Keep dependencies isolated from the rest of the system:</p>
+          <pre><code>python3 -m venv .venv
+source .venv/bin/activate   # on macOS</code></pre>
+        </div>
+
+        <div class="card">
+          <h3>4. Install Python dependencies</h3>
+          <p>Install the packages required by the dashboard and ingestors:</p>
+          <pre><code>pip install -r requirements.txt</code></pre>
+        </div>
+      </section>
+
+      <!-- RUNNING THE ANALYST DASHBOARD -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🧪</span> Running the analyst dashboard (app.py)
+        </h2>
+        <p class="section-subtitle">
+          The analyst view is where live macOS logs are ingested, analysed and visualised. It is
+          implemented using Streamlit with a focus on usability during viva and demo sessions.
+        </p>
+
+        <div class="card">
+          <h3>1. Start the macOS ingestor</h3>
+          <p>
+            The macOS Unified Log ingestor reads logs via the <code>log</code> command, parses
+            them and stores events in CSV / SQLite so the dashboard can consume them.
+          </p>
+          <pre><code>./start_forensiai.sh
+# or run the dedicated macOS ingestor script directly
+python ingest_macos_unifiedlog.py</code></pre>
+          <p>
+            In the thesis you can highlight that the ingestor is <strong>local only</strong> – no logs
+            are sent to the cloud, which aligns with data protection requirements.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>2. Launch the Streamlit dashboard</h3>
+          <p>
+            From the project root (with the virtual environment active):
+          </p>
+          <pre><code>streamlit run app.py</code></pre>
+          <p>
+            Streamlit will open the analyst dashboard in the browser (typically
+            <code>http://localhost:8501</code>). This interface shows:
+          </p>
+          <ul>
+            <li>Live events table with filters and column selection.</li>
+            <li>Top-5 alerts per host.</li>
+            <li>AI-style risk scoring for each machine.</li>
+            <li>Buttons to generate PDF / CSV reports.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROJECT MANAGER CONSOLE -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">📈</span> Project Manager console (pm_console.py)
+        </h2>
+        <p class="section-subtitle">
+          The PM console is a separate read-only view that reuses the same SQLite state but hides
+          low-level log details. This demonstrates separation of duties and stakeholder-friendly
+          reporting.
+        </p>
+
+        <div class="card">
+          <h3>How to run the PM console</h3>
+          <pre><code>streamlit run pm_console.py</code></pre>
+          <p>
+            Once running, the PM console provides:
+          </p>
+          <ul>
+            <li>Ingestor health metrics and system status banner.</li>
+            <li>Host ranking by average AI risk.</li>
+            <li>Security hotspots and incident summary for the selected window.</li>
+            <li>Recent analyst activity (audit trail) table.</li>
+            <li>One-click PM PDF report export.</li>
+          </ul>
+          <div class="badge-row">
+            <span class="badge">Read-only view</span>
+            <span class="badge">Audit logging</span>
+            <span class="badge">Supervisor friendly</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE / SECURITY -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🧱</span> Architecture &amp; security notes
+        </h2>
+        <p class="section-subtitle">
+          Use this section in your thesis to explain the high-level design: how logs flow from
+          the operating system into the dashboard and PM console.
+        </p>
+
+        <div class="card">
+          <h3>High-level data flow</h3>
+          <ul>
+            <li>Helper scripts collect logs (macOS Unified Log, later Windows logs).</li>
+            <li>Events are parsed into a clean, tabular format (CSV / SQLite).</li>
+            <li>The analyst dashboard (<code>app.py</code>) reads from this state and applies
+                risk scoring plus visual analytics.</li>
+            <li>The PM console (<code>pm_console.py</code>) reads the same state but only exposes
+                summary metrics and audit logs.</li>
+          </ul>
+          <div class="badge-row">
+            <span class="badge">Local storage only</span>
+            <span class="badge">Separation of duties</span>
+            <span class="badge">Explainable scoring</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Data protection &amp; future work</h3>
+          <p>
+            ForensiAI is designed as a teaching and demo tool, but the structure can be extended
+            with stronger security controls:
+          </p>
+          <ul>
+            <li>Encrypting the SQLite database at rest.</li>
+            <li>Tokenising sensitive usernames or hostnames.</li>
+            <li>Integrating with external threat-intel APIs (for example, VirusTotal) using
+                per-user API keys stored in environment variables.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- DEMO TIPS -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🎓</span> Demo &amp; viva tips
+        </h2>
+        <p class="section-subtitle">
+          A short checklist to help you during the actual defence: what to show and in which order.
+        </p>
+
+        <div class="card">
+          <h3>Suggested demo flow</h3>
+          <ul>
+            <li>Start the ingestor and open the analyst dashboard.</li>
+            <li>Trigger or replay a small set of suspicious events (e.g., SSH login failures).</li>
+            <li>Show how the risk score for a host increases.</li>
+            <li>Open the PM console and highlight host ranking, system health and recent analyst activity.</li>
+            <li>Generate a PM PDF report and explain how this supports incident documentation.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      ForensiAI — AI-powered digital forensics dashboard for macOS &amp; Windows.
+      Student project by Ahmed Alsowaidi at Bahrain Polytechnic. View the source code on
+      <a href="https://github.com/Alsowaidi98/ForensiAI" target="_blank" rel="noopener noreferrer">GitHub</a>.
+    </footer>
+  </div>
+</body>
+</html>
