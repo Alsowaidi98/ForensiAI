@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ForensiAI – Features for cybersecurity, AI analytics & PM console</title>
+
+  <meta name="description" content="Explore the main features of ForensiAI: macOS & Windows log ingestion, AI-style risk scoring, digital forensics dashboards, and a Project Manager console designed for capstone defence panels." />
+  <meta name="keywords" content="ForensiAI features, cybersecurity project, digital forensics dashboard, AI security analytics, Bahrain Polytechnic capstone, macOS unified log, Windows event logs, Streamlit" />
+  <meta name="author" content="Ahmed Alsowaidi" />
+
+  <!-- Canonical URL (features page) -->
+  <link rel="canonical" href="https://alsowaidi98.github.io/ForensiAI/features.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ForensiAI – Key features for AI-assisted digital forensics" />
+  <meta property="og:description" content="See how ForensiAI combines cybersecurity logs, AI-style risk scoring and a Project Manager console for clear incident reporting." />
+  <meta property="og:url" content="https://alsowaidi98.github.io/ForensiAI/features.html" />
+  <meta property="og:image" content="https://alsowaidi98.github.io/ForensiAI/forensiai-banner.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ForensiAI – Key features for AI-assisted digital forensics" />
+  <meta name="twitter:description" content="macOS & Windows logs, AI-style scoring, PM console and automated reports in one student-built dashboard." />
+  <meta name="twitter:image" content="https://alsowaidi98.github.io/ForensiAI/forensiai-banner.png" />
+
+  <!-- Shared dark theme styling -->
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #070b1f;
+      --primary: #3b82f6;
+      --primary-soft: rgba(59, 130, 246, 0.15);
+      --accent: #22c55e;
+      --danger: #ef4444;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0b1120;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top left, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5f0ff;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline { font-size: 12px; color: var(--muted); }
+
+    .header-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.92));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-pill span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    /* Top nav */
+    .top-nav {
+      padding: 0 28px 8px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-link-active {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+    }
+
+    main {
+      flex: 1;
+      padding: 12px 24px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin-top: 10px;
+      margin-bottom: 26px;
+      max-width: 740px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3.5vw, 32px);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span.highlight {
+      color: #60a5fa;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 46rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .hero-note strong { color: #e5e7eb; }
+
+    section { margin-bottom: 26px; }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span.emoji { font-size: 18px; }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      max-width: 56rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      font-size: 13px;
+      color: var(--muted);
+      padding-left: 18px;
+      margin-bottom: 4px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5f5;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      color: var(--muted);
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    footer {
+      padding: 16px 24px 22px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 10px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 1024px) {
+      .grid, .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .top-nav {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .grid, .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-text">
+          <div class="brand-name">FORENSIAI</div>
+          <div class="brand-tagline">AI-powered digital forensics dashboard</div>
+        </div>
+      </div>
+      <div class="header-pill">
+        <span class="dot"></span>
+        <span>Student project · Bahrain Polytechnic</span>
+      </div>
+    </header>
+
+    <!-- Top navigation -->
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link">Overview</a>
+      <a href="features.html" class="nav-link nav-link-active">Features</a>
+      <a href="docs.html" class="nav-link">Documentation</a>
+      <a href="https://github.com/Alsowaidi98/ForensiAI" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-eyebrow">Features · Cybersecurity · AI analytics</div>
+        <h1 class="hero-title">
+          What <span class="highlight">ForensiAI</span> can do for incident demos.
+        </h1>
+        <p class="hero-subtitle">
+          ForensiAI combines cybersecurity logging, AI-style risk scoring, data analytics and a
+          Project Manager console. It is designed to look like a small SOC tool while staying
+          realistic for a capstone project.
+        </p>
+        <p class="hero-note">
+          Built with Python, Streamlit, macOS Unified Log &amp; Windows event logs, and SQLite – with
+          clear separation between the analyst view and the management view.
+        </p>
+      </section>
+
+      <!-- CORE CAPABILITIES -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🧩</span> Core capabilities at a glance
+        </h2>
+        <p class="section-subtitle">
+          These are the main “headline features” you can mention in your thesis, viva and CV –
+          covering cybersecurity, programming, AI-style analytics and project management.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Live log ingestion</h3>
+            <p>
+              Reads macOS Unified Logs (and later Windows event logs) using helper scripts, parses them
+              and stores events in a structured format for analysis.
+            </p>
+            <div class="badge-row">
+              <span class="badge">macOS unified log</span>
+              <span class="badge">Windows security / Sysmon</span>
+              <span class="badge">Local only</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>AI-style risk scoring</h3>
+            <p>
+              Each host receives a heuristic risk score based on event frequency, suspicious patterns
+              and recent activity, helping the PM quickly see which machine needs attention.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Risk bands</span>
+              <span class="badge">Incidents first</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Dedicated PM console</h3>
+            <p>
+              A separate read-only Project Manager view shows high-risk hosts, ingestor health and
+              analyst activity without exposing raw log details.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Supervisor friendly</span>
+              <span class="badge">Audit trail</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CYBERSECURITY FEATURES -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🛡️</span> Cybersecurity &amp; digital forensics features
+        </h2>
+        <p class="section-subtitle">
+          Features you can highlight for “cybersecurity” and “digital forensics” marks.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Incident-focused views</h3>
+            <ul>
+              <li>Top alerts per host to focus on suspicious activity.</li>
+              <li>Timeline where you can see when bursts of events happen.</li>
+              <li>Security hotspots section in the PM console summarising high-risk windows.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">Incident triage</span>
+              <span class="badge">Timeline analysis</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Host ranking &amp; drill-down</h3>
+            <ul>
+              <li>Each host is ranked by average and maximum risk score.</li>
+              <li>Drill into a single host to see recent SSH failures or other events.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">Per-host forensics</span>
+              <span class="badge">Risk-based sorting</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAMMING & ARCHITECTURE -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">💻</span> Programming &amp; system design
+        </h2>
+        <p class="section-subtitle">
+          Under the hood, ForensiAI is a Python / Streamlit system with a clear architecture that you
+          can sketch in your design diagrams and thesis.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Python &amp; Streamlit implementation</h3>
+            <ul>
+              <li>Streamlit app for the analyst dashboard (<code>app.py</code>).</li>
+              <li>Separate Streamlit app for the PM console (<code>pm_console.py</code>).</li>
+              <li>Helper scripts for macOS log ingestion and demo data.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">Python programming</span>
+              <span class="badge">Web UI without JS</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>SQLite-backed state</h3>
+            <p>
+              Both the analyst dashboard and PM console share a local SQLite database. This keeps the
+              system simple but lets you show real-world ideas like audit logging and separation of duties.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Local database</span>
+              <span class="badge">State sharing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA / AI / ANALYTICS -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">📊</span> Data analytics &amp; AI-style logic
+        </h2>
+        <p class="section-subtitle">
+          Even without heavy machine learning, the project uses data analytics ideas to score risk,
+          surface anomalies and support decision making.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Heuristic risk scoring</h3>
+            <ul>
+              <li>Combines counts of suspicious events (e.g., login failures) with recency.</li>
+              <li>Outputs a score that maps to “Low / Medium / High” risk bands.</li>
+              <li>Easy to explain to examiners and extend later with machine learning.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">Explainable “AI”</span>
+              <span class="badge">Scoring function</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Analytics-ready data</h3>
+            <p>
+              Logs are normalised into a tabular structure (CSV / SQLite), which makes it easy to add:
+            </p>
+            <ul>
+              <li>More visualisations (histograms, bar charts, timelines).</li>
+              <li>Future machine learning or anomaly detection models.</li>
+              <li>Exports to external data science tools like pandas / Jupyter.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">Data science friendly</span>
+              <span class="badge">Structured events</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECT MANAGEMENT & REPORTING -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">📑</span> Project management &amp; reporting
+        </h2>
+        <p class="section-subtitle">
+          ForensiAI is not just a technical demo – it also demonstrates project management ideas like
+          roles, reporting and documentation.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Project Manager console</h3>
+            <ul>
+              <li>Read-only access to host metrics, risk and system health.</li>
+              <li>Recent analyst activity to show who did what and when.</li>
+              <li>One-click PM PDF report for thesis appendices and viva.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">Stakeholder view</span>
+              <span class="badge">Audit &amp; oversight</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Documented workflow</h3>
+            <p>
+              The system is backed by a full set of project documents: scope, risk management, HR plan,
+              quality approach and this public documentation site.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Capstone ready</span>
+              <span class="badge">Evidence for thesis</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FUTURE WORK -->
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🚀</span> Future extensions
+        </h2>
+        <p class="section-subtitle">
+          Ideas that you can mention in the “future work” section of the thesis, or if an examiner asks
+          “how would you extend this?”.
+        </p>
+
+        <div class="card">
+          <p>Possible next steps:</p>
+          <ul>
+            <li>Deeper Windows integration with Security + Sysmon log correlation.</li>
+            <li>Encrypted storage for the SQLite database and stronger authentication.</li>
+            <li>Optional integration with VirusTotal or other threat-intel APIs.</li>
+            <li>Packaging the analyst dashboard and PM console as macOS apps.</li>
+          </ul>
+          <div class="badge-row">
+            <span class="badge">Security roadmap</span>
+            <span class="badge">ML-ready design</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      ForensiAI — AI-powered digital forensics dashboard for macOS &amp; Windows.
+      Student project by Ahmed Alsowaidi at Bahrain Polytechnic. View the source code on
+      <a href="https://github.com/Alsowaidi98/ForensiAI" target="_blank" rel="noopener noreferrer">GitHub</a>.
+    </footer>
+  </div>
+</body>
+</html>
