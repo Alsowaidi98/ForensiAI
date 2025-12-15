@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#2563eb" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#4f46e5" stop-opacity="0.35"/>
+    </linearGradient>
+    <style>
+      .bg{fill:#0b1120;stroke:#1f2937;stroke-width:2}
+      .box{fill:#0f172a;stroke:#334155;stroke-width:2}
+      .title{fill:#e5e7eb;font:700 18px system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif}
+      .txt{fill:#9ca3af;font:500 14px system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif}
+      .arrow{stroke:#60a5fa;stroke-width:3;fill:none;marker-end:url(#m)}
+      .tag{fill:url(#g);stroke:#3b82f6;stroke-width:1.5}
+      .tagtxt{fill:#dbeafe;font:600 12px system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif}
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6" fill="#60a5fa"/>
+    </marker>
+  </defs>
+
+  <rect x="24" y="24" width="1152" height="472" rx="18" class="bg"/>
+
+  <!-- Sources -->
+  <rect x="70" y="120" width="290" height="120" rx="16" class="box"/>
+  <text x="95" y="155" class="title">Log sources</text>
+  <text x="95" y="185" class="txt">macOS Unified Log</text>
+  <text x="95" y="210" class="txt">Windows logs (future)</text>
+
+  <!-- Ingestor -->
+  <rect x="440" y="95" width="310" height="170" rx="16" class="box"/>
+  <text x="465" y="130" class="title">Ingestor scripts</text>
+  <text x="465" y="160" class="txt">Parse + normalise events</text>
+  <text x="465" y="185" class="txt">Write CSV + SQLite state</text>
+
+  <!-- Storage -->
+  <rect x="820" y="120" width="310" height="120" rx="16" class="box"/>
+  <text x="845" y="155" class="title">Local state</text>
+  <text x="845" y="185" class="txt">forensiai_state.db</text>
+  <text x="845" y="210" class="txt">outputs/*.csv</text>
+
+  <!-- Apps -->
+  <rect x="210" y="320" width="360" height="145" rx="16" class="box"/>
+  <text x="235" y="355" class="title">Analyst dashboard</text>
+  <text x="235" y="385" class="txt">app.py — live view + triage</text>
+  <text x="235" y="410" class="txt">PDF/CSV exports</text>
+
+  <rect x="630" y="320" width="360" height="145" rx="16" class="box"/>
+  <text x="655" y="355" class="title">PM console</text>
+  <text x="655" y="385" class="txt">pm_console.py — read-only</text>
+  <text x="655" y="410" class="txt">Host ranking + PM PDF report</text>
+
+  <!-- Arrows -->
+  <path d="M360,180 C400,180 410,180 440,180" class="arrow"/>
+  <path d="M750,180 C780,180 790,180 820,180" class="arrow"/>
+  <path d="M975,240 C975,285 460,285 390,320" class="arrow"/>
+  <path d="M975,240 C975,285 810,285 810,320" class="arrow"/>
+
+  <!-- Tags -->
+  <rect x="72" y="60" width="190" height="30" rx="999" class="tag"/>
+  <text x="90" y="80" class="tagtxt">Local demo (no cloud)</text>
+
+  <rect x="440" y="60" width="255" height="30" rx="999" class="tag"/>
+  <text x="458" y="80" class="tagtxt">Normalisation + scoring</text>
+
+  <rect x="820" y="60" width="230" height="30" rx="999" class="tag"/>
+  <text x="838" y="80" class="tagtxt">Shared audit &amp; policy</text>
+</svg>

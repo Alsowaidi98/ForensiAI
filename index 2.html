@@ -17,7 +17,6 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://alsowaidi98.github.io/ForensiAI/" />
 
-  <link rel="stylesheet" href="style.css" />
   <!-- Open Graph (Facebook, LinkedIn, etc.) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="ForensiAI – AI-powered digital forensics dashboard" />
@@ -69,41 +68,578 @@
   </script>
 
   <!-- Simple dark theme styling -->
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body class="home-page">
-  <div class="page">
-    <header class="site-header">
-      <div class="brand">
-        <a href="index.html" class="brand-mark" aria-label="ForensiAI home">
-          <img src="assets/forensiai-logo.png" class="brand-logo-img" alt="ForensiAI logo">
-        </a>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #070b1f;
+      --primary: #3b82f6;
+      --primary-soft: rgba(59, 130, 246, 0.15);
+      --accent: #22c55e;
+      --danger: #ef4444;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0b1120;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top left, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5f0ff;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .header-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.92));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-pill span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    main {
+      flex: 1;
+      padding: 12px 24px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 32px;
+      margin-top: 10px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-eyebrow-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.3), rgba(15, 23, 42, 0.95));
+      font-size: 11px;
+      color: #dbeafe;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span.highlight-mac {
+      color: #60a5fa;
+    }
+    .hero-title span.highlight-win {
+      color: #a5b4fc;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 40rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .chip.green {
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #bbf7d0;
+      background: rgba(22, 163, 74, 0.2);
+    }
+
+    .chip.blue {
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #bfdbfe;
+      background: rgba(37, 99, 235, 0.25);
+    }
+
+    .chip span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      cursor: default;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.95);
+      border-color: rgba(148, 163, 184, 0.45);
+      color: var(--muted);
+    }
+
+    .btn span.pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      font-size: 11px;
+      color: #a5b4fc;
+    }
+
+    .hero-footnote {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-footnote strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    /* Right side: PM snapshot card */
+    .pm-card {
+      background: radial-gradient(circle at top left, #111827, #020617 60%);
+      border-radius: 24px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .pm-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .pm-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+    }
+
+    .pm-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .pm-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pm-kpi {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 14px;
+      padding: 8px 10px;
+      border: 1px solid rgba(30, 64, 175, 0.7);
+    }
+
+    .pm-kpi-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .pm-kpi-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .pm-kpi-chip {
+      font-size: 11px;
+      margin-top: 2px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pm-kpi-chip.green {
+      background: rgba(22, 163, 74, 0.12);
+      color: #bbf7d0;
+    }
+
+    .pm-kpi-chip.amber {
+      background: rgba(234, 179, 8, 0.12);
+      color: #facc15;
+    }
+
+    .pm-kpi-chip.red-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--danger);
+    }
+
+    .pm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 11px;
+    }
+
+    .pm-table th,
+    .pm-table td {
+      padding: 5px 6px;
+      text-align: left;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.35);
+    }
+
+    .pm-table th {
+      font-weight: 500;
+      color: #9ca3af;
+      font-size: 11px;
+    }
+
+    .pm-table td.host {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .pm-table td.numeric {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pm-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span.emoji {
+      font-size: 18px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      max-width: 52rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (max-width: 880px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .changelog {
+      margin-top: 10px;
+    }
+
+    .changelog-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 16px 10px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .changelog-timeline {
+      margin-top: 6px;
+      border-left: 1px solid rgba(55, 65, 81, 0.9);
+      padding-left: 14px;
+    }
+
+    .changelog-item {
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 4px;
+    }
+
+    .changelog-item:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .changelog-dot {
+      position: absolute;
+      left: -20px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+    }
+
+    .changelog-date {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .changelog-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .changelog-body {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .feature-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 12px 12px 10px;
+    }
+
+    .feature-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feature-body {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5f5;
+    }
+    
+        /* Top navigation bar */
+    .top-nav {
+      padding: 0 28px 8px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-link-active {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+    }
+
+    footer {
+      padding: 16px 24px 22px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 10px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+    <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
         <div class="brand-text">
           <div class="brand-name">FORENSIAI</div>
           <div class="brand-tagline">AI-powered digital forensics dashboard</div>
         </div>
       </div>
-
-      <nav class="topnav" aria-label="Primary navigation">
-        <a href="index.html" class="active">Home</a>
-        <a href="features.html">Features</a>
-        <a href="downloads.html">Download</a>
-        <a href="docs.html">Docs</a>
-        <a href="https://github.com/Alsowaidi98/ForensiAI-App" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </nav>
-
       <div class="header-pill">
         <span class="dot"></span>
         <span>Student project · Bahrain Polytechnic</span>
       </div>
     </header>
 
+    <!-- Top navigation shared across all pages -->
     <nav class="top-nav">
       <a href="index.html" class="nav-link nav-link-active">Overview</a>
       <a href="features.html" class="nav-link">Features</a>
       <a href="docs.html" class="nav-link">Documentation</a>
-      <a href="downloads.html" class="nav-link">Download</a>
+      <a href="https://github.com/Alsowaidi98/ForensiAI" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
     </nav>
 
     <main>
@@ -132,12 +668,11 @@
             <span class="chip">Built by Ahmed Alsowaidi</span>
           </div>
 
-          <div class="download-actions">
-            <a class="btn btn-primary" href="downloads.html">Download</a>
-
-            <a class="btn btn-ghost"
-               href="https://github.com/Alsowaidi98/ForensiAI-App"
-               target="_blank" rel="noopener noreferrer">
+          <div class="hero-actions">
+            <div class="btn btn-primary">
+              Download <span class="pill">Demo build (coming soon)</span>
+            </div>
+            <a class="btn btn-ghost" href="https://github.com/Alsowaidi98/ForensiAI" target="_blank" rel="noopener noreferrer">
               View project on GitHub
             </a>
           </div>
@@ -347,4 +882,4 @@
     </footer>
   </div>
 </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+</html>

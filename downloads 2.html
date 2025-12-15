@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download ForensiAI — macOS Demo Build</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <div class="brand">
+    <div class="brand-logo">F</div>
+    <div class="brand-text">
+      <div class="brand-name">FORENSIAI</div>
+      <div class="brand-tagline">AI-powered digital forensics dashboard</div>
+    </div>
+  </div>
+
+  <div class="header-pill">
+    <span class="dot"></span>
+    <span>Student project · Bahrain Polytechnic</span>
+  </div>
+</header>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-link">Overview</a>
+  <a href="features.html" class="nav-link">Features</a>
+  <a href="docs.html" class="nav-link">Documentation</a>
+  <a href="downloads.html" class="nav-link nav-link-active">Download</a>
+</nav>
+
+<main>
+  <section class="hero">
+    <div>
+      <h1 class="hero-title">
+        Download &amp; run the <span class="highlight-mac">ForensiAI macOS demo</span>
+      </h1>
+      <p class="hero-subtitle">
+        This capstone version of ForensiAI is designed as a <strong>local demo</strong> on a lab
+        MacBook (Ahmed’s MacBook Pro). It ships with a simple launcher app that starts both the
+        Analyst dashboard and the Project Manager console with one click.
+      </p>
+
+      <div class="hero-chip-row">
+        <span class="chip green"><span class="dot"></span>Local macOS demo build</span>
+        <span class="chip blue">Python &amp; Streamlit backend</span>
+        <span class="chip">Student project · Bahrain Polytechnic</span>
+      </div>
+
+      <section>
+        <h2 class="section-title">
+          <span class="emoji">🚀</span> How to start ForensiAI on this Mac
+        </h2>
+        <p class="section-subtitle">
+          On the presentation machine (Ahmed’s laptop), the demo is already installed and configured.
+          To launch ForensiAI during the defence, follow these steps:
+        </p>
+
+        <div class="feature-card">
+          <div class="feature-title">Start the system</div>
+          <div class="feature-body">
+            <ol style="margin-left: 1.2rem; font-size: 13px;">
+              <li>Open <strong>Launchpad</strong> or the <strong>Applications</strong> folder.</li>
+              <li>Double-click <strong>Start ForensiAI</strong>.</li>
+              <li>Wait a few seconds for the services to start.</li>
+              <li>Two browser tabs will open automatically:
+                <ul style="margin-top: 4px; margin-left: 1.2rem;">
+                  <li><strong>http://localhost:8501</strong> – SOC analyst dashboard</li>
+                  <li><strong>http://localhost:8510</strong> – Project Manager console</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="feature-card" style="margin-top: 10px;">
+          <div class="feature-title">Stop the system</div>
+          <div class="feature-body">
+            <ol style="margin-left: 1.2rem; font-size: 13px;">
+              <li>Open <strong>Launchpad</strong> or the <strong>Applications</strong> folder.</li>
+              <li>Double-click <strong>Stop ForensiAI</strong>.</li>
+              <li>The background processes will shut down safely.</li>
+            </ol>
+            <p style="margin-top: 6px;">
+              This makes it easy to start and stop the demo during viva / presentation sessions
+              without touching the terminal.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="pm-card">
+      <div class="pm-card-header">
+        <div>
+          <div class="pm-card-title">Source code &amp; reproducibility</div>
+          <div class="pm-label">For examiners and reviewers</div>
+        </div>
+      </div>
+
+      <p class="section-subtitle" style="margin-bottom: 10px;">
+        The full implementation (macOS logs ingestion, analyst dashboard, Project Manager console
+        and PDF report generator) is available in the public GitHub repository:
+      </p>
+
+      <div class="feature-card">
+        <div class="feature-title">GitHub repository</div>
+        <div class="feature-body">
+          <p>
+            <a href="https://github.com/Alsowaidi98/ForensiAI"
+               target="_blank" rel="noopener noreferrer">
+              github.com/Alsowaidi98/ForensiAI
+            </a>
+          </p>
+          <p style="margin-top: 6px;">
+            The repository includes the Streamlit apps (<code>app.py</code> and
+            <code>pm_console.py</code>), ingestion scripts, and the launcher shell scripts used by
+            the Start / Stop ForensiAI applications.
+          </p>
+        </div>
+      </div>
+
+      <p class="section-subtitle" style="margin-top: 12px;">
+        A public installer is <strong>not</strong> provided yet. This demo is focused on academic
+        evaluation, architecture, security design and project management (ForensiAI reports,
+        PM console, risk metrics, etc.).
+      </p>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  ForensiAI — Student project by Ahmed Alsowaidi. View the source on
+  <a href="https://github.com/Alsowaidi98">GitHub</a>.
+</footer>
+
+</div>
+</body>
+</html>
