@@ -333,6 +333,49 @@ section{margin-bottom:28px}
   border-radius:8px;
 }
 
+/* Downloads page: ZIP button + quick start block */
+.download-cta{ margin: 14px 0 18px; }
+
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  border:1px solid rgba(148,163,184,.22);
+  background: rgba(15,23,42,.55);
+  color:#e5e7eb;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.btn:hover{
+  background: rgba(59,130,246,.12);
+  border-color: rgba(59,130,246,.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary{
+  background: rgba(37,99,235,.25);
+  border-color: rgba(59,130,246,.50);
+}
+
+.btn-primary:hover{
+  background: rgba(37,99,235,.32);
+}
+
+.btn-ghost{
+  background: rgba(15,23,42,.35);
+}
+
 .code-card{
   background: rgba(15,23,42,.96);
   border: 1px solid rgba(31,41,55,.90);
@@ -391,119 +434,4 @@ section{margin-bottom:28px}
 }
 .grid-2{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
-}
-.card{
-  background:rgba(15,23,42,.96);
-  border-radius:var(--radius-lg);
-  border:1px solid rgba(31,41,55,.90);
-  padding:14px 16px;
-  box-shadow:var(--shadow-soft);
-  margin-bottom:12px;
-}
-.card h3{font-size:14px;margin-bottom:6px}
-.card p{font-size:13px;color:var(--muted);margin-bottom:6px}
-.card ul{font-size:13px;color:var(--muted);padding-left:18px;margin-bottom:4px}
-
-.badge-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.badge{
-  font-size:11px;
-  padding:3px 8px;
-  border-radius:999px;
-  border:1px solid rgba(148,163,184,.30);
-  color:#cbd5f5;
-}
-
-/* Code blocks (docs) */
-code{
-  font-family:"SF Mono",ui-monospace,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-  font-size:12px;
-  background:rgba(15,23,42,.90);
-  padding:2px 5px;
-  border-radius:6px;
-  border:1px solid rgba(31,41,55,.90);
-}
-pre{
-  background:rgba(15,23,42,.96);
-  border-radius:10px;
-  padding:10px 12px;
-  border:1px solid rgba(31,41,55,.90);
-  font-size:12px;
-  overflow-x:auto;
-  margin:6px 0;
-}
-pre code{border:none;padding:0;background:transparent}
-
-/* Footer */
-footer{
-  padding:16px 24px 22px;
-  font-size:11px;
-  color:var(--muted);
-  border-top:1px solid rgba(31,41,55,.90);
-  margin-top:10px;
-}
-footer a{
-  color:#93c5fd;
-  text-decoration:underline;
-  text-underline-offset:2px;
-}
-
-/* Responsive */
-@media (max-width: 1024px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width: 880px){
-  header{flex-direction:column;align-items:flex-start}
-  .topnav{flex-wrap:wrap}
-  .hero{grid-template-columns:1fr}
-}
-@media (max-width: 720px){
-  .grid,.grid-2{grid-template-columns:minmax(0,1fr)}
-}
-.architecture-diagram{
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  border: 1px solid rgba(148,163,184,0.18);
-  background: rgba(15,23,42,0.35);
-
-  /* keeps the same shape as your SVG (1200x520) */
-  aspect-ratio: 1200 / 520;
-}
-.download-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin: 14px 0 6px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:10px 14px;
-  border-radius:999px;
-  font-size:12px;
-  border:1px solid rgba(148,163,184,.22);
-  background:rgba(15,23,42,.55);
-  color:#e5e7eb;
-  transition:transform .15s ease, background .15s ease, border-color .15s ease;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-  border-color:rgba(59,130,246,.35);
-  background:rgba(59,130,246,.12);
-}
-
-.btn-primary{
-  border-color:rgba(59,130,246,.45);
-  background:rgba(37,99,235,.22);
-}
-
-.btn-ghost{
-  background:rgba(15,23,42,.35);
-}
+  grid-templ
